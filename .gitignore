@@ -11,3 +11,6 @@ fact-check/06-gmx-run/
 fact-check/*-verify/
 *.ps1
 .DS_Store
+
+# 历史归档（不入库）
+.history/
