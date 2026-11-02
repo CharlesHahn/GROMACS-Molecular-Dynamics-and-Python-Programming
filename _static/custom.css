@@ -1,0 +1,29 @@
+/* 书型阅读微调 */
+.mermaid-host {
+  text-align: center;
+  margin: 1.2em 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.mermaid-error {
+  color: #b3261e;
+  font-size: 0.9em;
+  padding: 8px;
+  background: #fdecea;
+  border-radius: 4px;
+}
+
+/* 数学公式显示更清晰 */
+.MathJax_Display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 正文排版：稍宽行距更适合长文阅读 */
+article.bd-article p {
+  line-height: 1.75;
+}

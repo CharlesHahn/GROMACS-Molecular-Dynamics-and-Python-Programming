@@ -1,0 +1,7 @@
+# Read the Docs / Sphinx 构建依赖（版本与本地验证一致）
+Sphinx>=9.0,<10
+myst-parser>=5.0,<6
+sphinx-book-theme>=1.4,<2
+sphinx-copybutton>=0.5
+sphinx-design>=0.7
+sphinxcontrib-jquery>=4.1
