@@ -37,3 +37,19 @@
 | 项 | 处置 | 依据 |
 | --- | --- | --- |
 | refs[27] Luzar & Chandler 页码 | 55-58 → 55-57（正文文献表与 refs 两处同步） | Nature 官网引用框/Crossref/OpenAlex/Google Scholar/ResearchGate 六路一致（验收者核验） |
+
+## 面向同行深度补强轮（2026-11-04，按 peer-08-review priorityActions）
+| 论断 | 来源（级别+定位） | 核验方式 | 状态 |
+| --- | --- | --- | --- |
+| couple-moltype/lambda0/lambda1/intramol 语义；couple-intramol 默认 no；隐式构造 B 态 | A：GROMACS mdp 选项文档（2026.4 索引确认存在）+ Free energy implementation 页（2023.3/2023.4 官方手册同款表述） | anysearch extract/search | 已核实 |
+| calc-lambda-neighbors 默认 1、−1=全部状态（MBAR/AWH 需全矩阵） | A：GROMACS 2026.4 mdp 文档 + 官方 AWH-FEP mdp 示例（calc-lambda-neighbors = -1） | anysearch search/extract | 已核实 |
+| gmx bar 自动相加各段 BAR、-nbmin/-nbmax 默认 5、-prec 默认 2、s_A/s_B 相对熵（Wu & Kofke 度量） | A：gmx bar 2026.4 官方页（原文含 "automatically adds…combined…"、5 blocks、Wu & Kofke 123 084109） | anysearch extract | 已核实 |
+| gmx analyze -ac/-ee/-luzar；-temp 默认 298.15 K、-fitstart/-fitend 默认 1/60 ps | A：gmx analyze 2026.4 官方页（含 -[no]luzar 对 gmx hbond -ac 输出的 Luzar–Chandler 分析） | anysearch extract | 已核实 |
+| NVT→NpT 的 pV 修正（手册式 131，22 bar/−1 kJ·mol⁻¹ 例）与动能质量项 −(3/2)k_BT·ln(m_B/m_A) | A：GROMACS 2026.4 参考手册 Free energy calculations 页 | anysearch extract | 已核实 |
+| FEP Jensen 不等式、有限样本估计量系统偏高、log-space 求值 | 教科书方法学共识；正文以 [6]（Wu & Kofke，相空间重叠与偏差）为锚，未绑定单一出处声明 | 方法学共识（正文已注明依据类型） | 已核实 |
+| MBAR 全矩阵约束：dhdl 只含邻态 ΔH；-1 重跑 / alchemical-analysis 组装 / pymbar 重构三条路；overlap 矩阵诊断；log-sum-exp | B：Klimovich 2015 [10]；A：pymbar 文档前提（样本近似独立） | 原始文献+官方文档 | 已核实 |
+| 新增 12 条引文六项核验（Gilson[4]、Wu&Kofke[6]、Klimovich[10]、gmx analyze[12]、Pohorille[13]、Mey[14]、Kästner[17]、Genheden&Ryde[21]、Duan[22]、Tiwary&Parrinello[34]、Impey[37]、Laage&Hynes[39]） | B 级文献；gmx analyze 为 A 级 | anysearch Crossref/search/extract 逐条核验（标题/作者/期刊/年份/卷期页/DOI）；9 条沿用 peer-08 已核验结论，Wu&Kofke、Laage&Hynes 本轮补核 | 已核实 |
+| WTM 收敛于 −(1−1/γ)F(s)+C（理想极限下原始形式逼近 −F(s)）；Tiwary–Parrinello 指数重加权 ⟨Oe^{βV}⟩/⟨e^{βV}⟩ | B：Bussi & Laio 2020 [33]；B：Tiwary & Parrinello 2013 [34]（PRL 111:230602，量纲与卷期页经 Crossref 更正核验） | 原始文献 | 已核实 |
+| 引用编号 1-42 首现顺序严格递增、章末与 refs 42/42 逐字一致 | 自检 | 脚本实测（.history/08-verify-round.py） | 已核实（修订轮） |
+| 汉字数 20,738 ≥10,000（STYLE 口径） | 自检 | 脚本实测 | 已核实 |
+| 结构调整：8.2 新增「8.2.2 炼金术拓扑准备与耦合方案」，原 8.2.2–8.2.6 顺延为 8.2.3–8.2.7；8.6.4 原文引用错位 [17,26]（Amadei）更正为 [24,36]（手册+AWH 页） | 自检 | 全文 grep 复查 | 已核实 |
