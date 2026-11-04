@@ -435,16 +435,6 @@ python -m pstats ana.prof   # 交互式 pstats；或 python -c "import pstats,sy
 - 机器学习势经 NNPot 模块（LibTorch/TorchScript）或 metatomic 后端接入，接口快速演进；精度与成本须以未参与训练的量子化学数据验证，ML/MM 混合嵌入的接口边界以手册为准。
 - 脚本固化为软件需要三层测试、交叉验证参照、cProfile 剖析与依赖/GROMACS 环境锁定，打包时记录 ABI 相关的构建信息。
 
-## 习题
-
-1. 解释为何在约束氢键后蛋白质-水体系可以采用 2 fs 的时间步长，并指出 LINCS 不能用于耦合角约束的数学原因（提示：矩阵展开的收敛条件）。
-2. 某体系约 10 万原子、单个 64 核节点、无 GPU，计划运行 1 μs 蛋白-水模拟。据此选择并行配置（thread-MPI 或 MPI、-ntmpi/-ntomp 配比），说明判断依据，并指出其扩展性瓶颈。
-3. 用 gmxapi 编写脚本：读取两个 tpr 副本的输入，运行系综模拟并取回两条轨迹文件的路径；说明该脚本必须满足的 MPI 启动条件与检测方式。
-4. 基于分析工具模板编写自定义工具的步骤是什么？从模板复制、修改核心计算、编译链接到与内置工具交叉验证各给出关键动作；指出至少两个最容易出错的链接配置。
-5. 分别用 MDAnalysis 与 MDTraj 写出读取轨迹并计算每帧 RMSD 的代码，说明两者单位与内存模型差异，并给出与 gmx rms 交叉验证的方案。
-6. （开放题）gmxapi 与第 10 章的 Snakemake 在模拟工作流中的边界在哪里？给出一个应选 gmxapi、一个应选 Snakemake、一个应两者组合的场景，并说明理由。
-7. （开放题）评估在蛋白-配体复合物上使用 NNPot 的可行性：给出成本（训练数据与推理）、精度验证（与从头算与实验对比）与接口边界（ML/MM 划分、静电处理）三方面的论证框架，并指出该方案中风险最不可控的环节。
-
 ## 参考文献
 
 [1] Abraham M J, Murtola T, Schulz R, et al. GROMACS: High performance molecular simulations through multi-level parallelism from laptops to supercomputers[J]. SoftwareX, 2015, 1-2: 19-25. DOI: 10.1016/j.softx.2015.06.001.
