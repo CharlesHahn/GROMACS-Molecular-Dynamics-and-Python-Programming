@@ -215,7 +215,7 @@ import numpy as np
 
 kJ2kcal = 1.0 / 4.184          # 1 kcal = 4.184 kJ
 data = np.loadtxt("energy.xvg", comments=("#", "@"))
-E_rows = data[1:, :] / data[1:, :].max(axis=0)   # 每列归一化到 0–1，示意
+E_norm = data[:, 1] / np.abs(data[:, 1]).max()   # 势能列归一化到 [-1, 1]，示意
 E_kcal = data[:, 1] * kJ2kcal   # 势能列换算，kJ/mol → kcal/mol
 
 # 反例：逐行 Python 循环（仅作对照，不用于生产）
