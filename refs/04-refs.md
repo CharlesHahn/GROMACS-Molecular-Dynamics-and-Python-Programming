@@ -1,4 +1,4 @@
-﻿# 第 4 章 参考文献（refs）
+# 第 4 章 参考文献（refs）
 
 > 本章正文参考文献，编号与正文上标严格对应（GB/T 7714-2015）。在线文档标注访问日期：2026-10-28。
 > 卷期页核验：经 Crossref 复核，各期刊条目卷期页均已补齐（[55] 于 2026-10-29 修订中补填为 19(11): 3251-3275），本清单不再有「待补」条目。
@@ -53,6 +53,8 @@
 [47] GROMACS 2026.4 documentation. gmx genion[EB/OL]. https://manual.gromacs.org/current/onlinehelp/gmx-genion.html（访问日期：2026-10-28）.
 [48] Wang J, Wang W, Kollman P A, et al. Automatic atom type and bond type perception in molecular mechanical calculations[J]. Journal of Molecular Graphics and Modelling, 2006, 25(2): 247-260. DOI: 10.1016/j.jmgm.2005.12.005.
 [49] Mobley D L, Bannan C C, Rizzi A, et al. Escaping atom types in force fields using direct chemical perception[J]. Journal of Chemical Theory and Computation, 2018, 14(11): 6076-6092. DOI: 10.1021/acs.jctc.8b00607.
+[50] Joung I S, Cheatham T E III. Determination of alkali and halide monovalent ion parameters for use in explicitly solvated biomolecular simulations[J]. The Journal of Physical Chemistry B, 2008, 112(30): 9020-9041. DOI: 10.1021/jp8001614.
+[51] Li P, Song L F, Merz K M Jr. Parameterization of highly charged metal ions using the 12-6-4 LJ-type nonbonded model in explicit water[J]. The Journal of Physical Chemistry B, 2015, 119(3): 883-895. DOI: 10.1021/jp5058759.
 [50] Bayly C I, Cieplak P, Cornell W D, et al. A well-behaved electrostatic potential based method using charge restraints for deriving atomic charges: the RESP model[J]. The Journal of Physical Chemistry, 1993, 97(40): 10269-10280. DOI: 10.1021/j100142a004.
 [51] Jakalian A, Bush B L, Jack D B, et al. Fast, efficient generation of high-quality atomic charges. AM1-BCC model: I. Method[J]. Journal of Computational Chemistry, 2000, 21(2): 132-146. DOI: 10.1002/(SICI)1096-987X(20000130)21:2%3C132::AID-JCC5%3E3.0.CO;2-P.
 [52] Sousa da Silva A W, Vranken W F. ACPYPE - AnteChamber PYthon Parser interfacE[J]. BMC Research Notes, 2012, 5: 367. DOI: 10.1186/1756-0500-5-367.
