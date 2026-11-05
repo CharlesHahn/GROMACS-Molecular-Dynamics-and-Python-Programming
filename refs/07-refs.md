@@ -1,4 +1,4 @@
-﻿# 第 7 章 参考文献（refs）
+# 第 7 章 参考文献（refs）
 
 > 本章正文参考文献，编号与正文上标严格对应（GB/T 7714-2015）。在线文档标注访问日期：2026-10-29。
 > 卷期页核验：文献条目元数据自 anysearch 检索结果抄录；[7]（Kabsch 1976）与 [27]（Allen & Tildesley 2017）的 DOI 取自通用学术引用惯例，未在本轮 extract 中原文字面复核，留待 Crossref 复核（见 fact-check/07-log.md）。本清单无「（卷期页待补）」标注。正文中 `gmx do_dssp` 更名年份按官方 2023 发行说明写定为 2023（写作指令提示为 2024，官方文件为 2023，以官方文件为准）。
@@ -42,3 +42,4 @@
 [37] MDTraj documentation. MDTraj: An open library for the analysis of molecular dynamics trajectories[EB/OL]. https://mdtraj.org/（访问日期：2026-10-29）.
 [38] GROMACS 2026.4 documentation. gmx gyrate-legacy[EB/OL]. https://manual.gromacs.org/current/onlinehelp/gmx-gyrate-legacy.html（访问日期：2026-10-29）.
 [39] Barlow D J, Thornton J M. Ion-pairs in proteins[J]. Journal of Molecular Biology, 1983, 168(4): 867-885. DOI: 10.1016/S0022-2836(83)80079-5.
+[40] Laage D, Hynes J T. A molecular jump mechanism of water reorientation[J]. Science, 2006, 311(5760): 832-835. DOI: 10.1126/science.1122154.
