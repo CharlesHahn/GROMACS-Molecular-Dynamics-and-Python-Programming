@@ -439,6 +439,14 @@ python -m pstats ana.prof   # 交互式 pstats；或 python -c "import pstats,sy
 - 机器学习势经 NNPot 模块（LibTorch/TorchScript）或 metatomic 后端接入，接口快速演进；精度与成本须以未参与训练的量子化学数据验证，ML/MM 混合嵌入的接口边界以手册为准。
 - 脚本固化为软件需要三层测试、交叉验证参照、cProfile 剖析与依赖/GROMACS 环境锁定，打包时记录 ABI 相关的构建信息。
 
+## 延伸讨论
+
+扩展开发的选型有三条主线：能用 gmxapi 编排的就不用脚本胶水（错误恢复与类型安全）；能用现成生态工具的就不用自研（维护成本计入研究预算）；必须自研时，把 C++ 工具剖析与 Python 接口分离——前者的稳定性靠单元测试与 golden-file 参考，后者靠类型契约与交叉验证。三条主线的共同底座仍是第 9 章的可复核纪律。
+
+机器学习势的验证协议（训练域覆盖核验、ensemble 不确定性、数值稳定性三步）是本章方法学重心：ML 势的价值与风险都来自「模型外推行为不透明」，因此验证不是可选项而是生产前提。把「训练域覆盖检查」与第 1 章的模型误差三分对接，ML 势的适用边界就有了可操作的判定句式。
+
+生态工具的维护状态（MDAnalysis 活跃、MDTraj 维护模式、PyEMMA 停更由 deeptime 承接）提示：生态选型是「研究基础设施投资」，其贬值速度与硬件相当。以「活跃度 × 社区规范 × 与既有代码的耦合成本」三项评估新依赖，是同行在评审他人代码时应问、在自己代码中应答的问题。
+
 ## 参考文献
 
 [1] Abraham M J, Murtola T, Schulz R, et al. GROMACS: High performance molecular simulations through multi-level parallelism from laptops to supercomputers[J]. SoftwareX, 2015, 1-2: 19-25. DOI: 10.1016/j.softx.2015.06.001.
