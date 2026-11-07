@@ -129,7 +129,7 @@ gmxapi 是 GROMACS 官方维护的 Python 接口，自 GROMACS 2019 版起正式
 gmxapi 的 Python 包随 GROMACS 安装，需要与 GROMACS 同版本对应，并建议在独立虚拟环境中安装；若 GROMACS 以 -DGMX_MPI=on 构建，则 gmxapi 也必须用同一 MPI 编译器工具链构建，并安装 mpi4py[13]。安装完成并 source GMXRC 后即可导入：
 
 ```python
-# Python ≥3.12；gmxapi 0.5.x（GROMACS 2026.4 手册对应版本）
+# Python ≥3.12；gmxapi 0.5.0a1（GROMACS 2026.4 手册版本；PyPI 上最新稳定发布为 0.4.2，跨版本请核对）
 import gmxapi as gmx
 
 sim = gmx.read_tpr("topol.tpr")   # 从 tpr 建立模拟输入，不立即执行
@@ -156,7 +156,7 @@ solvate = gmx.commandline_operation(
 
 commandline_operation 的输出包含 returncode 与 stderr 等成员，可用于错误处理[13]。此外，@gmx.function_wrapper 装饰器可把任意 Python 函数转换为数据流操作，供循环与子图（subgraph）使用，这使高层次的采样算法（如系综重加权）可以完全在 Python 层编写。表 11-3 汇总 gmxapi 的常用操作与其对应的命令行语义。图 11-2 给出以 gmxapi 构建「系综模拟—轨迹—分析」链的典型数据流。
 
-表 11-3　gmxapi 常用操作与对应命令行语义（GROMACS 2026.4 / gmxapi 0.5.x）
+表 11-3　gmxapi 常用操作与对应命令行语义（GROMACS 2026.4 / gmxapi 0.5.0a1）
 
 | gmxapi 调用 | 对应命令行 | 说明 |
 | --- | --- | --- |
@@ -315,9 +315,9 @@ PLUMED 接口存在三条官方明示的限制：不能与 GROMACS 的能量输�
 | MDTraj | Trajectory 数组 | 数组化计算、格式转换、ML 输入 | 整体载入内存 | 直读 xtc/trr 等，nm 单位 |
 | PyEMMA 2 | featurizer/trajectory | MSM 估计与验证、tICA | 特征矩阵 | 连接第 8 章 MSM 概念 |
 | deeptime | Estimator/Model | MSM、HMM、VAMP 与深度方法 | 特征矩阵 | 与 sklearn 生态统一 |
+| PLUMED | 偏置势与集体变量 | 元动力学、伞形采样、OPES | 引擎内 | 需 MPI 构建与 PLUMED_KERNEL |
 
 选择生态工具时，**维护状态与活跃度**是与功能同等重要的维度——同类中文参考书普遍忽略这一点，而它直接决定新项目是否该以某工具为依赖。依据各项目官方仓库与发布线（以检索时点为准）：MDAnalysis 处于活跃维护（定期发布、社区活跃）；MDTraj 已进入**维护模式**（低频率更新，新功能基本冻结，但稳定 API 使其仍广泛用于 ML 输入构建）；PyEMMA 的积极开发已停止（其核心方法学由 deeptime 承接），新 MSM 项目应优先考虑 deeptime 或与当前分发渠道兼容的替代；deeptime 处于活跃开发，提供 MSM/HMM 与深度降维的统一接口。影响选择的三条判据：新项目优先活跃工具（依赖长期可维护）；教学或复现已发表论文时，按文献所用工具版本固定环境（第 9 章可复现纪律）；跨工具迁移（如 PyEMMA → deeptime）时，注意特征化器与转换器 API 的差异，不能只替换导入语句。以任何工具做 MSM 分析时，模型验证（implied timescale 平台期与 CK 检验）属于必做步骤（见 11.5.3）[24]。
-| PLUMED | 偏置势与集体变量 | 元动力学、伞形采样、OPES | 引擎内 | 需 MPI 构建与 PLUMED_KERNEL |
 
 ## 11.6 机器学习势
 
