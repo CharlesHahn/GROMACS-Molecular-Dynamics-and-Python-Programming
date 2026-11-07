@@ -40,7 +40,7 @@
 [36] GROMACS 2026.4 documentation. Reference manual: Adaptively biased methods (AWH)[EB/OL]. https://manual.gromacs.org/current/reference-manual/special/awh.html（访问日期：2026-10-29）.
 [37] Impey R W, Madden P A, McDonald I R. Hydration and mobility of ions in solution[J]. J Phys Chem, 1983, 87(25): 5071-5083. DOI: 10.1021/j150643a008.
 [38] Luzar A, Chandler D. Hydrogen-bond kinetics in liquid water[J]. Nature, 1996, 379(6560): 55-57. DOI: 10.1038/379055a0.
-[39] Laage D, Hynes J T. A molecular jump mechanism of water reorientation[J]. Science, 2006, 311(5760): 832-835. DOI: 10.1126/science.1122154.
+[39] Laage D, Hynes J T. A molecular jump mechanism of water reorientation[J]. Science, 2006, 311(5762): 832-835. DOI: 10.1126/science.1122154.
 [40] GROMACS 2026.4 documentation. gmx hbond-legacy[EB/OL]. https://manual.gromacs.org/current/onlinehelp/gmx-hbond-legacy.html（访问日期：2026-10-29）.
 [41] Jarzynski C. Nonequilibrium equality for free energy differences[J]. Physical Review Letters, 1997, 78(14): 2690-2693. DOI: 10.1103/PhysRevLett.78.2690.
 [42] Valsson O, Tiwary P, Parrinello M. Enhancing important fluctuations: Rare events and metadynamics from a conceptual viewpoint[J]. Annual Review of Physical Chemistry, 2016, 67: 159-184. DOI: 10.1146/annurev-physchem-040215-112229.
