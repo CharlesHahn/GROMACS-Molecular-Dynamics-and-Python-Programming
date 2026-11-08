@@ -23,6 +23,7 @@
 | 自助法 | bootstrap | — | 从样本中有放回地重抽样、以重采样分布的离散度估计统计不确定度的通用方法 | 9.3.2 节 |
 | 正则系综 | canonical ensemble | NVT | 粒子数、体积与温度恒定的统计系综，由恒温器维持 | 5.5 节 |
 | 检查点 | checkpoint | — | 周期记录坐标、速度与步号的二进制快照（state.cpt），是中断后可续算的基础 | 6.2.2 节 |
+| 残基距离接触矩阵 | residue distance contact map | RDCM | 以残基对距离为矩阵元的构象描述，可定义接触与 encounter 并统计占有率、衍生 RMSD/RMSF/DCCM/PCA | 7.4.5 节 |
 | 粗粒化 | coarse-grained | CG | 把约四个重原子合并为单个相互作用中心的建模层次，可把可模拟尺度提升数个量级 | 4.4.3 节 |
 | 集体变量 | collective variable | CV | 描述体系慢过程的一个或一组坐标函数（距离、二面角等），是增强采样方法施加偏置的对象 | 8.6.1 节 |
 | 共轭梯度 | conjugate gradient | CG | 沿互共轭方向序列下降的能量最小化算法，适合在近似收敛区做精细优化 | 5.2.2 节 |
@@ -32,17 +33,19 @@
 | 截断距离 | cutoff distance | — | 非键相互作用被截断或平滑处理的半径，取值必须满足盒最短边不小于两倍截断的最小镜像条件 | 4.6.2 节 |
 | 密度剖面 | density profile | — | 把盒内某组原子沿一个方向切分成薄片、统计各片数密度或质量密度得到的分布曲线 | 7.5.2 节 |
 | DSSP | Dictionary of Secondary Structure of Proteins | DSSP | 依据主链氢键模式把残基分配到 α 螺旋、β 折叠片等类别的二级结构判定算法，为事实标准 | 7.4.1 节 |
+| 二面角主成分分析 | dihedral principal component analysis | dPCA | 对经三角变换的骨架二面角做特征分解的 PCA 变体，聚焦局部构象变化 | 7.4.2 节 |
 | 二面角 | dihedral angle | — | 由四个连续原子定义的扭转角，力场成键项之一；另有 improper 项维持平面性 | 4.4.1 节 |
 | 二硫键 | disulfide bond | — | 两个半胱氨酸侧链硫原子之间的共价连接，由 pdb2gmx 依据 specbond 距离判据识别生成 | 4.3.2 节 |
 | 域分解 | domain decomposition | DD | 把模拟盒按空间划分为若干域、每个进程负责一个域内粒子计算的并行策略 | 6.4.1 节 |
 | 双种子纪律 | dual-seed discipline | — | 同时记录 gen_seed（初速）与 ld_seed（热浴随机流）并以显式值分配副本的可复现性纪律 | 5.4.2 节 |
-| 动态互相关 | dynamic cross-correlation | DCC | 以残基对位移涨落的 Pearson 相关系数刻画运动耦合的指标，取值于 −1 与 1 之间 | 8.5.2 节 |
+| 动力学互相关矩阵 | dynamic cross-correlation matrix | DCCM | 以残基对位移涨落的 Pearson 相关系数刻画运动耦合的指标，取值于 −1 与 1 之间，热图呈现区域内协同与区域间反相运动 | 7.4.3 节 |
 | 有效样本数 | effective sample size | — | 相关序列折算后等价于独立样本的数目，与积分自相关时间成反比 | 9.2.3 节 |
 | 有效样本数 | effective sample size | N_eff | 以自相关时间修正后的独立样本数，N_eff = T/(2τ_int)，是均值标准误的正确分母 | 9.2 节 |
 | 能量最小化 | energy minimization | EM | 通过迭代优化使体系势能降至局部极小附近的预处理步骤，用于消除初始结构应力 | 5.1 节 |
 | 系综 | ensemble | — | 满足给定宏观约束的大量微观状态集合及其上的统计分布，是统计力学推断的载体 | 1.1.1 节 |
 | 遍历性 | ergodicity | — | 时间平均等于系综平均的统计性质，是有限采样推断体系平衡性质的隐含前提 | 9.1.1 节 |
 | 力场 | force field | FF | 势能函数形式与其参数集的统称，定义了体系总势能随原子坐标的变化 | 1.1.3 节 |
+| 自由能面 | free energy landscape | FEL | 沿一个或两个反应坐标把访问频率转换为 −k_BT ln p 的二维自由能图，盆地对应亚态 | 7.4.4 节 |
 | 自由能 | free energy | — | 恒温条件下的热力学势（亥姆霍兹或吉布斯自由能），其差决定平衡、结合与构象布居 | 8.1 节 |
 | 自由能微扰 | free energy perturbation | FEP | 由两状态间能量差分布的指数平均估计自由能差的方法 | 8.2.2 节 |
 | GMXLIB | GMXLIB | — | GROMACS 用于搜索力场目录的环境变量，pdb2gmx 启动时打印实际使用的力场路径 | 4.3.1 节 |
@@ -55,10 +58,11 @@
 | 积分自相关时间 | integrated autocorrelation time | — | 自相关函数对时间积分所得的相关时间尺度，决定时间序列的有效样本数 | 9.2.2 节 |
 | 等温等压系综 | isothermal-isobaric ensemble | NPT | 粒子数、压力与温度恒定的统计系综，由恒温器与恒压器共同维持 | 5.6 节 |
 | Lennard-Jones 势 | Lennard-Jones potential | LJ | 由排斥项与吸引项构成的两体范德华势，参数为阱深 ε 与碰撞直径 σ | 4.4.1 节 |
+| 配体-蛋白相互作用分析 | protein-ligand interaction profiling | PLIP | 以几何判据（氢键、疏水、π-π、π-阳离子、盐桥等）枚举并统计配体-蛋白相互作用的工具链 | 7.5.5 节 |
 | 配体参数化 | ligand parametrization | — | 为不在标准残基库中的小分子生成原子类型、电荷与成键参数的全过程 | 4.8 节 |
 | LINCS | LINear Constraint Solver | LINCS | 以矩阵展开迭代求解键约束的算法，是 GROMACS 的默认约束求解器 | 5.8.1 节 |
 | 整体化 | make whole | — | 把被周期边界切开的分子沿化学键拼合完整的轨迹预处理操作（trjconv -pbc whole/mol） | 7.1.1 节 |
-| 马尔可夫状态模型 | Markov state model | MSM | 把相空间离散为状态、以转移矩阵描述状态间跃迁并推断慢动力学的模型 | 8.5.4 节 |
+| 马尔可夫状态模型 | Markov state model | MSM | 把相空间离散为状态、以转移矩阵描述状态间跃迁并推断慢动力学的模型 | 7.4.9 节 |
 | 消息传递接口 | Message Passing Interface | MPI | 进程间通信的标准接口；GROMACS 跨节点并行依赖 MPI 或内置的 thread-MPI | 2.6.4 节 |
 | 元动力学 | metadynamics | — | 沿集体变量周期沉积偏置势、使体系逐渐翻越自由能垒的增强采样方法 | 8.6.2 节 |
 | 最小镜像约定 | minimum image convention | — | 只考虑每个粒子最近镜像之间相互作用的计算约定，其成立前提是截断半径不大于盒最短边长的一半 | 4.6.2 节 |
@@ -76,7 +80,7 @@
 | 势能函数 | potential energy function | — | 以原子坐标为变量的总势能表达式，是力场的函数形式部分 | 4.4.1 节 |
 | 平均力势 | potential of mean force | PMF | 沿反应坐标的自由能曲线，是伞形采样与 WHAM 等方法的输出产物 | 8.3 节 |
 | 主成分 | principal component | PC | 坐标涨落协方差矩阵的特征向量，轨迹沿其特征方向的方差等于对应特征值 | 8.5.1 节 |
-| 主成分分析 | principal component analysis | PCA | 对原子坐标涨落的协方差矩阵做特征分解、提取方差最大的正交方向的方法 | 8.5.1 节 |
+| 主成分分析 | principal component analysis | PCA | 对原子坐标涨落的协方差矩阵做特征分解、提取方差最大的正交方向的方法，前若干主成分常对应协同运动 | 7.4.1 节 |
 | 蛋白质数据库 | Protein Data Bank | PDB | 存放生物大分子实验结构的数据组织与坐标格式，也是该数据库的名称 | 4.2.1 节 |
 | 质子化态 | protonation state | — | 可电离基团在给定 pH 下的氢原子占据形态，直接决定体系净电荷与氢键网络 | 4.2.2 节 |
 | 径向分布函数 | radial distribution function | RDF | 距参考粒子距离 r 处找到目标粒子的概率密度相对均匀分布的倍数，用于描述局域结构与配位 | 7.5.1 节 |
@@ -95,12 +99,13 @@
 | 溶剂化 | solvation | — | 把溶质置于目标溶剂中并消除重叠、建立周期性水环境的步骤，由 solvate 完成 | 4.7.1 节 |
 | 溶剂可及表面积 | solvent-accessible surface area | SASA | 滚动探针球（常规取水分子有效半径 1.4 Å）在分子表面扫过的包络面面积 | 7.3.4 节 |
 | 统计误差 | statistical error | — | 源于有限采样的误差，随采样时长与样本量的增加而减小 | 8.1.3 节 |
+| 最短路径图 | shortest path map | SPM | 以残基距离与相关系数构建图、用最短路径识别别构通信枢纽的分析方法 | 7.4.6 节 |
 | 最速下降 | steepest descent | SD | 沿负梯度方向下降的能量最小化算法，适合消除初始立体冲突，收敛后期变慢 | 5.2.1 节 |
 | 热力学积分 | thermodynamic integration | TI | 对 ∂H/∂λ 的系综平均沿耦合参数 λ 积分以求得自由能差的方法 | 8.2.1 节 |
 | 恒温器 | thermostat | — | 控制体系温度以维持目标系综的耦合算法，如 v-rescale、Nosé-Hoover 与 Berendsen | 5.5 节 |
 | thread-MPI | thread-MPI | — | GROMACS 内置的以线程模拟 MPI rank 通信层的单节点并行实现 | 2.6.4 节 |
 | 吞吐量 | throughput | — | 单位墙钟时间完成的模拟时长，以 ns/day 或 hour/ns 计，写入 md.log 的性能小结 | 6.5.1 节 |
-| 时间滞后独立成分分析 | time-lagged independent component analysis, tICA | tICA | 以时间滞后协方差最大化寻找最慢混合坐标的降维方法，用于 MSM 特征化与慢变量识别 | 9.4 节 |
+| 时间滞后独立成分分析 | time-lagged independent component analysis, tICA | tICA | 以时间滞后协方差最大化寻找最慢混合坐标的降维方法，用于 MSM 特征化与慢变量识别 | 7.4.8 节 |
 | 时间步长 | time step | dt | 积分器每次推进的时间间隔；全原子显式溶剂体系常规取 0.002 ps，可配合约束与质量重分配提升 | 5.8.1 节 |
 | 拓扑 | topology | — | 描述原子类型、电荷、质量与相互作用参数的文件（.top 及其 #include 的 .itp），与坐标逐原子对应 | 4.1.1 节 |
 | 轨迹 | trajectory | — | 记录粒子坐标（及速度、力）随时间演化的文件，xtc 为有损压缩格式、trr 为全精度格式 | 1.1.1 节 |
@@ -111,4 +116,6 @@
 | v-rescale | v-rescale | — | 随机速度缩放恒温器，对速度分布扰动小且可恢复正则系综，为 GROMACS 推荐的生产恒温器 | 5.5.3 节 |
 | 水模型 | water model | — | 描述水分子相互作用位点、几何与参数（TIP3P、SPC/E、TIP4P/2005、OPC 等）的模型 | 4.5.1 节 |
 | 水分子驻留 | water residence | — | 水分子在蛋白表面或结合位点停留的时间尺度，由壳层计数或氢键寿命刻画 | 7.5.3 节 |
+| 均匀流形逼近与投影 | uniform manifold approximation and projection | UMAP | 以流形假设保持局部结构的非线性降维方法，常用于构象系综可视化 | 7.4.8 节 |
+| t 分布随机邻域嵌入 | t-distributed stochastic neighbor embedding | t-SNE | 以条件概率保持邻域相似性的非线性降维方法，簇不宜直接当反应坐标 | 7.4.8 节 |
 | 加权柱状分析 | weighted histogram analysis method | WHAM | 以迭代重加权把重叠窗口的直方图拼接为无偏 PMF 的经典方法 | 8.3.3 节 |
