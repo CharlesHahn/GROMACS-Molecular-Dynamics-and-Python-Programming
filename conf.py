@@ -20,6 +20,8 @@ extensions = [
     "sphinx.ext.intersphinx",
 ]
 
+suppress_warnings = ["myst.mathjax"]
+
 source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
