@@ -60,6 +60,15 @@ myst_enable_extensions = [
 myst_heading_anchors = 3
 
 # 书型主题：sphinx-book-theme（最贴近书的阅读布局）
+mathjax_path = 'mathjax/es5/tex-chtml.js'
+# MathJax 3 显式配置（本地化渲染；\(..\) 与 $..$ 均支持）
+mathjax3_config = {
+    "tex": {"inlineMath": [["\\(", "\\)"], ["$", "$"]],
+            "displayMath": [["\\[", "\\]"], ["$$", "$$"]]},
+    "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math"},
+}
+
+
 html_theme = "sphinx_book_theme"
 html_title = "GROMACS 分子动力学模拟与Python编程"
 html_theme_options = {
@@ -80,9 +89,22 @@ html_theme_options = {
 html_static_path = ["_static"]
 # Mermaid 前端渲染：加载 mermaid.js 与初始化脚本
 html_js_files = [
-    "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js",
+    "mermaid.min.js",
     "mermaid-init.js",
 ]
+# 注册 mermaid 代码块词法分析器别名（消除 Pygments unknown lexer 警告）
+from pygments.lexer import RegexLexer
+from pygments.token import Text
+
+class MermaidLexer(RegexLexer):
+    name = "mermaid"
+    aliases = ["mermaid"]
+    tokens = {"root": [(r".*?\n", Text)]}
+
+def setup(app):
+    from sphinx.highlighting import lexers
+    lexers["mermaid"] = MermaidLexer()
+
 html_css_files = [
     "custom.css",
 ]
